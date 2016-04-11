@@ -16,6 +16,8 @@ Really Fast Quick Start
 
 One liner for Ubuntu 14.04 LTS machines with JSON-RPC enabled on localhost and adds upstart init script:
 
+*NOT YET READY TO USE!*
+
     curl https://raw.githubusercontent.com/kelostrada/docker-litecoind/master/bootstrap-host.sh | sh -s trusty
 
 
@@ -34,7 +36,7 @@ Quick Start
 
         $ docker ps
         CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS              PORTS                                              NAMES
-        d0e1076b2dca        kelu/litecoind:latest     "btc_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp   litecoind-node
+        d0e1076b2dca        kelu/litecoind:latest     "ltc_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp   litecoind-node
 
 3. You can then access the daemon's output thanks to the [docker logs command]( https://docs.docker.com/reference/commandline/cli/#logs)
 
