@@ -1,6 +1,8 @@
 Litecoind for Docker
 ===================
 
+**FORKED FROM:** https://github.com/kylemanna/docker-bitcoind
+
 Docker image that runs a litecoind node in a container for easy deployment.
 
 
