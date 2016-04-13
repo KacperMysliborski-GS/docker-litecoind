@@ -30,11 +30,11 @@ Quick Start
 
 1. Create a `litecoind-data` volume to persist the litecoind blockchain data, should exit immediately.  The `litecoind-data` container will store the blockchain when the node container is recreated (software upgrade, reboot, etc):
 
-        docker run --name=litecoind-data -v /litecoin busybox chown 1000:1000 /litecoin
-        docker run --volumes-from=litecoind-data --name=litecoind-node -d \
+        docker volume create --name=litecoind-data
+        docker run -v litecoind-data:/litecoin --name=litecoind-node -d \
             -p 9333:9333 \
-            -p 127.0.0.1:9332:9332 \
-            kelu/litecoind
+            -p 9332:9332 \
+            kelu/litecoin
 
 2. Verify that the container is running and litecoind node is downloading the blockchain
 
