@@ -11,9 +11,12 @@ if [ ! -e "$HOME/.litecoin/litecoin.conf" ]; then
 
     # Seed a random password for JSON RPC server
     cat <<EOF > $HOME/.litecoin/litecoin.conf
+txindex=1
 printtoconsole=1
 rpcuser=litecoinrpc
 rpcpassword=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
+externalip=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+rpcport=9332
 EOF
 
 fi

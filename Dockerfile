@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER kelu <kelostrada@gmail.com>
 
-# Install dependencies
+# Install wget 
 RUN apt-get update \
     && apt-get install -y wget \
     && apt-get autoremove -y \
@@ -17,7 +17,7 @@ RUN wget https://download.litecoin.org/litecoin-$VERSION/linux/litecoin-$VERSION
     && ln -sfv /opt/litecoind/litecoin-$VERSION/bin/* /usr/local/bin \
     && rm -rf litecoin-$VERSION-linux64.tar.gz
 
-# Add user
+# Add user litecoin
 ENV HOME /litecoin
 RUN useradd -s /bin/bash -m -d /litecoin litecoin
 RUN chown litecoin:litecoin -R /litecoin
