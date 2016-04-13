@@ -4,7 +4,7 @@
 #
 set -ex
 
-BTC_IMAGE=${BTC_IMAGE:-kylemanna/bitcoind}
+LTC_IMAGE=${LTC_IMAGE:-kelu/litecoin}
 
 distro=$1
 shift
@@ -35,23 +35,23 @@ if [ "$distro" = "trusty" -o "$distro" = "ubuntu:14.04" ]; then
 fi
 
 # Always clean-up, but fail successfully
-docker kill bitcoind-data bitcoind-node 2>/dev/null || true
-docker rm bitcoind-data bitcoind-node 2>/dev/null || true
-stop docker-bitcoind 2>/dev/null || true
+docker kill litecoind-node 2>/dev/null || true
+docker rm litecoind-node 2>/dev/null || true
+stop docker-litecoind || true
 
 # Always pull remote images to avoid caching issues
-if [ -z "${BTC_IMAGE##*/*}" ]; then
-    docker pull $BTC_IMAGE
+if [ -z "${LTC_IMAGE##*/*}" ]; then
+    docker pull $LTC_IMAGE
 fi
 
 # Initialize the data container
-docker run --name=bitcoind-data -v /bitcoin busybox chown 1000:1000 /bitcoin
-docker run --volumes-from=bitcoind-data --rm $BTC_IMAGE btc_init
+docker volume create --name=litecoind-data
+docker run -v litecoind-data:/litecoin --rm $LTC_IMAGE ltc_init
 
-# Start bitcoind via upstart and docker
-curl https://raw.githubusercontent.com/kylemanna/docker-bitcoind/master/upstart.init > /etc/init/docker-bitcoind.conf
-start docker-bitcoind
+# Start litecoind via upstart and docker
+curl https://raw.githubusercontent.com/kelostrada/docker-litecoind/master/upstart.init > /etc/init/docker-litecoind.conf
+start docker-litecoind
 
 set +ex
-echo "Resulting bitcoin.conf:"
-docker run --volumes-from=bitcoind-data --rm $BTC_IMAGE cat /bitcoin/.bitcoin/bitcoin.conf
+echo "Resulting litecoin.conf:"
+docker run -v litecoind-data:/litecoin --rm $LTC_IMAGE cat /litecoin/.litecoin/litecoin.conf
