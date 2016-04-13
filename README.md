@@ -20,8 +20,6 @@ Really Fast Quick Start
 
 One liner for Ubuntu 14.04 LTS machines with JSON-RPC enabled on localhost and adds upstart init script:
 
-*NOT YET READY TO USE!*
-
     curl https://raw.githubusercontent.com/kelostrada/docker-litecoind/master/bootstrap-host.sh | sh -s trusty
 
 
