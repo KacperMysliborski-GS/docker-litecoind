@@ -11,7 +11,7 @@ Restart=always
 # Modify IP6_PREFIX to match network config
 Environment="NAME=litecoind"
 Environment="DATA_VOL=litecoind-data"
-Environment="IMG=kelu/litecoin"
+Environment="IMG=kelu/litecoind"
 Environment="PORT=8333:8333/tcp"
 
 # To override environment variables, use local configuration directory:

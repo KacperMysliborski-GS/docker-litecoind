@@ -4,7 +4,7 @@
 #
 set -ex
 
-LTC_IMAGE=${LTC_IMAGE:-kelu/litecoin}
+LTC_IMAGE=${LTC_IMAGE:-kelu/litecoind}
 
 distro=$1
 shift
